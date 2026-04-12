@@ -63,6 +63,8 @@ const Contact = () => {
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Submission failed with status:', response.status, errorText);
         throw new Error('Failed to submit message');
       }
 
