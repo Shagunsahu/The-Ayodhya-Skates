@@ -130,13 +130,13 @@ app.post('/api/admissions', async (req, res) => {
       `,
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Nodemailer Error:", error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
-    });
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log("Email sent successfully");
+    } catch (emailError) {
+      console.error("Nodemailer Error:", emailError);
+      // Optional: You could throw here if you want to fail the whole request
+    }
 
     res.status(201).json(newAdmission);
   } catch (error) {
@@ -163,13 +163,12 @@ app.post('/api/contact', async (req, res) => {
       `,
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Nodemailer Error:", error);
-      } else {
-        console.log("Contact Email sent: " + info.response);
-      }
-    });
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log("Contact Email sent successfully");
+    } catch (emailError) {
+      console.error("Nodemailer Error:", emailError);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {
