@@ -47,7 +47,8 @@ const Admission = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/admissions', {
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const response = await fetch(`${apiUrl}/api/admissions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
