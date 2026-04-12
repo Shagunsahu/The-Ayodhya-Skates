@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      String   @default("user")
+}
+
+model Coach {
+  id             String   @id @default(uuid())
+  name           String
+  role           String
+  image          String?
+  specialization String
+  experience     String
+  description    String   @db.Text
+  achievements   String[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  date        String
+  time        String?
+  location    String?
+  type        String?
+  description String?  @db.Text
+  status      String?
+  result      String?
+  isPastEvent Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Achievement {
+  id        String   @id @default(uuid())
+  year      String
+  title     String
+  category  String
+  result    String
+  student   String
+  iconName  String
+  color     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Admission {
+  id          String   @id @default(uuid())
+  studentName String
+  age         Int
+  parentName  String
+  phone       String
+  email       String?
+  address     String   @db.Text
+  discipline  String
+  batch       String
+  experience  String
+  message     String?  @db.Text
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
