@@ -79,7 +79,7 @@ const CTASection = () => {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 hover:text-white">
+              <Button asChild variant="outline" size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8">
                 <Link to="/contact">Contact Us</Link>
               </Button>
             </div>

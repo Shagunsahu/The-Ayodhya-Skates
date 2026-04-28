@@ -4,21 +4,36 @@ import Layout from "@/components/layout/Layout";
 import SEO from "@/components/common/SEO";
 import SectionHeader from "@/components/common/SectionHeader";
 import { Play, X, Image, Trophy, Users, Building } from "lucide-react";
-import founderImage from "@/assets/founder-ravinder-kumar.jpg";
+import photo1 from "@/assets/1.jpg";
+import photo2 from "@/assets/2.jpg";
+import photo3 from "@/assets/3.jpg";
+import photo4 from "@/assets/4.jpg";
+import photo5 from "@/assets/5.jpg";
+import photo6 from "@/assets/6.jpg";
+import photo7 from "@/assets/7.jpg";
+import photo8 from "@/assets/8.jpg";
+import photo9 from "@/assets/9.jpg";
+import photo10 from "@/assets/10.jpg";
+import photo11 from "@/assets/11.jpg";
+import heroImage1 from "@/assets/hero-image-1.jpg";
+import heroImage2 from "@/assets/hero-image-2.jpg";
+import heroImage3 from "@/assets/hero-image-3.jpg";
 
 const galleryItems = [
-  { src: founderImage, alt: "Founder at skating workshop", category: "Events", title: "Founder's Workshop" },
-  { src: null, alt: "Speed skating training", category: "Training", placeholder: "🏎️", title: "Speed Training" },
-  { src: null, alt: "Students at competition", category: "Competitions", placeholder: "🏆", title: "State Championship" },
-  { src: null, alt: "Group photo", category: "Academy", placeholder: "👥", title: "Team The Ayodhya Skates" },
-  { src: null, alt: "Artistic skating performance", category: "Training", placeholder: "💃", title: "Artistic Session" },
-  { src: null, alt: "Award ceremony", category: "Events", placeholder: "🎖️", title: "Award Ceremony" },
-  { src: null, alt: "Practice session", category: "Training", placeholder: "⛸️", title: "Practice Time" },
-  { src: null, alt: "Kids learning skating", category: "Academy", placeholder: "👶", title: "Kids Batch" },
-  { src: null, alt: "Relay race training", category: "Training", placeholder: "🏃", title: "Relay Practice" },
-  { src: null, alt: "Medal winners", category: "Competitions", placeholder: "🥇", title: "Medal Winners" },
-  { src: null, alt: "Skating rink view", category: "Academy", placeholder: "🛹", title: "Our Rink" },
-  { src: null, alt: "Coach training students", category: "Training", placeholder: "🎓", title: "Expert Coaching" },
+  { src: photo1, alt: "Gallery photo 1", category: "Training", title: "Training Moment" },
+  { src: photo2, alt: "Gallery photo 2", category: "Training", title: "Track Practice" },
+  { src: photo3, alt: "Gallery photo 3", category: "Competitions", title: "Competition Day" },
+  { src: photo4, alt: "Gallery photo 4", category: "Academy", title: "Team Ayodhya" },
+  { src: photo5, alt: "Gallery photo 5", category: "Training", title: "Speed Drill" },
+  { src: photo6, alt: "Gallery photo 6", category: "Events", title: "Award Ceremony" },
+  { src: photo7, alt: "Gallery photo 7", category: "Training", title: "Practice Session" },
+  { src: photo8, alt: "Gallery photo 8", category: "Academy", title: "Kids Batch" },
+  { src: photo9, alt: "Gallery photo 9", category: "Training", title: "Relay Practice" },
+  { src: photo10, alt: "Gallery photo 10", category: "Competitions", title: "Medal Winners" },
+  { src: photo11, alt: "Gallery photo 11", category: "Academy", title: "Our Rink" },
+  { src: heroImage1, alt: "Hero image 1", category: "Events", title: "Founder Moment" },
+  { src: heroImage2, alt: "Hero image 2", category: "Events", title: "Academy Highlights" },
+  { src: heroImage3, alt: "Hero image 3", category: "Academy", title: "Together Strong" },
 ];
 
 const categories = ["All", "Training", "Competitions", "Events", "Academy"];
@@ -108,17 +123,11 @@ const Gallery = () => {
                 className="aspect-square rounded-2xl overflow-hidden cursor-pointer group relative shadow-lg hover:shadow-2xl transition-all duration-300"
                 onClick={() => setSelectedImage(image)}
               >
-                {image.src ? (
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-500">
-                    {image.placeholder}
-                  </div>
-                )}
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
                 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
@@ -269,17 +278,11 @@ const Gallery = () => {
             <X className="w-8 h-8" />
           </button>
           <div className="max-w-4xl max-h-[80vh] text-center">
-            {selectedImage.src ? (
-              <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                className="w-full h-full object-contain rounded-lg"
-              />
-            ) : (
-              <div className="w-80 h-80 md:w-96 md:h-96 bg-gradient-to-br from-primary/30 to-accent/30 rounded-2xl flex items-center justify-center text-9xl">
-                {selectedImage.placeholder}
-              </div>
-            )}
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="w-full h-full object-contain rounded-lg"
+            />
             <div className="mt-4 text-white">
               <h3 className="text-xl font-bold">{selectedImage.title}</h3>
               <p className="text-white/70">{selectedImage.category}</p>

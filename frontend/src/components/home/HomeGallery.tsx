@@ -2,16 +2,26 @@ import { motion } from "framer-motion";
 import { Camera, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/common/SectionHeader";
-import founderImage from "@/assets/founder-ravinder-kumar.jpg";
-import skatingTraining from "@/assets/skating-training.jpg";
+import gallery1 from "@/assets/1.jpg";
+import gallery2 from "@/assets/2.jpg";
+import gallery3 from "@/assets/3.jpg";
+import gallery4 from "@/assets/4.jpg";
+import gallery5 from "@/assets/5.jpg";
+import gallery6 from "@/assets/6.jpg";
+import heroImage1 from "@/assets/hero-image-1.jpg";
+import heroImage2 from "@/assets/hero-image-2.jpg";
+import heroImage3 from "@/assets/hero-image-3.jpg";
 
 const galleryImages = [
-  { src: skatingTraining, alt: "Daily skating practice", title: "Daily Practice", category: "Training" },
-  { src: founderImage, alt: "Founder coaching session", title: "Expert Coaching", category: "Coaching" },
-  { src: null, alt: "Speed skating drill", title: "Speed Drills", category: "Training", placeholder: "🏎️" },
-  { src: null, alt: "Group practice session", title: "Group Sessions", category: "Activities", placeholder: "👥" },
-  { src: null, alt: "Competition preparation", title: "Competition Prep", category: "Events", placeholder: "🏆" },
-  { src: null, alt: "Fun skating games", title: "Fun & Games", category: "Activities", placeholder: "🎮" },
+  { src: gallery1, alt: "Ayodhya Skates gallery image 1", title: "Training Moment", category: "Training" },
+  { src: gallery2, alt: "Ayodhya Skates gallery image 2", title: "On Track", category: "Practice" },
+  { src: gallery3, alt: "Ayodhya Skates gallery image 3", title: "Focus Drill", category: "Coaching" },
+  { src: gallery4, alt: "Ayodhya Skates gallery image 4", title: "Team Session", category: "Activities" },
+  { src: gallery5, alt: "Ayodhya Skates gallery image 5", title: "Speed Work", category: "Training" },
+  { src: gallery6, alt: "Ayodhya Skates gallery image 6", title: "Warm Up", category: "Practice" },
+  { src: heroImage1, alt: "Ayodhya Skates hero image 1", title: "Academy Hero", category: "Highlights" },
+  { src: heroImage2, alt: "Ayodhya Skates hero image 2", title: "Momentum", category: "Highlights" },
+  { src: heroImage3, alt: "Ayodhya Skates hero image 3", title: "Together", category: "Highlights" },
 ];
 
 const HomeGallery = () => {
@@ -54,19 +64,11 @@ const HomeGallery = () => {
               }`}
             >
               <div className={`${index === 0 ? "aspect-[4/3] md:aspect-square" : "aspect-square"}`}>
-                {image.src ? (
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-secondary to-muted flex items-center justify-center group-hover:from-primary/10 group-hover:to-secondary transition-colors duration-500">
-                    <span className={`${index === 0 ? "text-8xl" : "text-5xl"} group-hover:scale-125 transition-transform duration-500`}>
-                      {image.placeholder}
-                    </span>
-                  </div>
-                )}
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
               </div>
 
               {/* Overlay with cyan accent */}

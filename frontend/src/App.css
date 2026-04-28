@@ -40,3 +40,38 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Partners marquee */
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+.marquee-track {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  /* animation-duration will be set inline based on number of items */
+  animation-name: marquee-slide;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-slide {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Ensure the track is a single horizontal row and children don't wrap */
+.marquee-track {
+  flex-wrap: nowrap;
+}
+.marquee-track > * {
+  flex: 0 0 auto;
+}

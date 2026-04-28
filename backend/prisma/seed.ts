@@ -17,7 +17,7 @@ async function main() {
     {
       name: "Mr. Ravinder Kumar",
       role: "Founder & Head Coach",
-      image: "founderImage", // we'll use string to identify it in frontend if needed
+      image: "founder-ravinder-kumar", // we'll use string to identify it in frontend if needed
       specialization: "Speed Skating, Competition Training",
       experience: "8+ Years",
       description: "Certified skating instructor with experience training state-level athletes.",
@@ -176,6 +176,33 @@ async function main() {
     });
   }
   console.log('Seeded Achievements');
+
+  // 4. Partners
+  const schoolLogoBase = '/src/assets/school%20logo';
+  const partnersModel = (prisma as any).partners;
+  const partnersData = [
+    { name: 'Aryavart Academy', image: `${schoolLogoBase}/logo.jpg` },
+    { name: 'Bhavdiya Public School, Ayodhya', image: `${schoolLogoBase}/images.jpeg` },
+    { name: 'Faizabad Public School, Ayodhya', image: `${schoolLogoBase}/logo_fps_new.png` },
+    { name: 'Seth Anandram Jaipuria School, Majnai, Ayodhya', image: `${schoolLogoBase}/SAJS-Ayodhya-Website.jpg` },
+    { name: 'H.C.J. Academy, Ayodhya', image: `${schoolLogoBase}/logo-1.webp` },
+    { name: 'Jingle Bell School, Ayodhya', image: `${schoolLogoBase}/JBS-1.jpg` },
+    { name: 'Jingle Bell Academy', image: `${schoolLogoBase}/jba-logo.jfif` },
+    { name: 'Seth M.R.Jaipuria School, Ayodhya', image: `${schoolLogoBase}/MRD%20LOGO.webp` },
+  ];
+
+  for (const partner of partnersData) {
+    const existing = await partnersModel.findFirst({
+      where: { name: partner.name }
+    });
+
+    if (!existing) {
+      await partnersModel.create({
+        data: partner
+      });
+    }
+  }
+  console.log('Seeded Partners');
 
   console.log('Seeding finished.');
 }

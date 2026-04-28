@@ -12,7 +12,7 @@ const SponsorsSection = () => {
   return (
     <section className="section-padding bg-secondary/30">
       <div className="container-custom">
-        {/* Sponsors */}
+        {/* Sponsors 
         <SectionHeader
           badge="Our Sponsors"
           title="Proudly Sponsored By"
@@ -53,7 +53,7 @@ const SponsorsSection = () => {
             <p className="col-span-4 text-center text-muted-foreground">No sponsors available</p>
           )}
         </div>
-
+            */}
         {/* Partners */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,31 +73,57 @@ const SponsorsSection = () => {
               <Skeleton key={i} className="h-28 rounded-xl" />
             ))
           ) : partners && partners.length > 0 ? (
-            partners.map((partner, index) => (
-              <motion.div
-                key={partner.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-card rounded-xl p-4 text-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-border group"
-              >
-                {partner.logo_url ? (
-                  <img 
-                    src={partner.logo_url} 
-                    alt={partner.name} 
-                    className="w-12 h-12 object-contain mx-auto mb-2 group-hover:scale-110 transition-transform"
-                  />
-                ) : (
-                  <div className="text-3xl md:text-4xl mb-2 group-hover:scale-110 transition-transform">
-                    {partner.logo_emoji}
-                  </div>
-                )}
-                <h5 className="font-semibold text-xs md:text-sm text-foreground line-clamp-2">
-                  {partner.name}
-                </h5>
-              </motion.div>
-            ))
+            // Marquee container: duplicate items for seamless loop
+            <div className="col-span-3 md:col-span-6 w-full">
+              <div className="marquee">
+                <div
+                  className="marquee-track w-max"
+                  style={{
+                    // speed: 6s per original set item; adjust multiplier as needed
+                    animationDuration: `${Math.max(12, partners.length * 4)}s`,
+                  }}
+                >
+                  {partners.map((partner) => (
+                    <div
+                      key={partner.id}
+                      className="bg-card rounded-xl p-3 px-5 text-center shadow-md transition-all duration-300 border border-border flex items-center justify-center gap-3"
+                      style={{ minWidth: "max-content" }}
+                    >
+                      {partner.logo_url ? (
+                        <img
+                          src={partner.logo_url}
+                          alt={partner.name}
+                          className="w-16 h-10 object-contain"
+                        />
+                      ) : (
+                        <div className="text-2xl">{partner.logo_emoji}</div>
+                      )}
+                      <span className="font-semibold text-sm whitespace-nowrap">{partner.name}</span>
+                    </div>
+                  ))}
+
+                  {/* duplicate set for continuous scroll */}
+                  {partners.map((partner) => (
+                    <div
+                      key={`${partner.id}-dup`}
+                      className="bg-card rounded-xl p-3 px-5 text-center shadow-md transition-all duration-300 border border-border flex items-center justify-center gap-3"
+                      style={{ minWidth: "max-content" }}
+                    >
+                      {partner.logo_url ? (
+                        <img
+                          src={partner.logo_url}
+                          alt={partner.name}
+                          className="w-16 h-10 object-contain"
+                        />
+                      ) : (
+                        <div className="text-2xl">{partner.logo_emoji}</div>
+                      )}
+                      <span className="font-semibold text-sm whitespace-nowrap">{partner.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           ) : (
             <p className="col-span-6 text-center text-muted-foreground">No partners available</p>
           )}

@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play, Zap } from "lucide-react";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import skatingTrainingImage from "@/assets/skating-training.jpg";
+import skatingTrainingImage from "@/assets/hero-image-2.jpg";
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -105,7 +105,7 @@ const HeroSection = () => {
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 shadow-lg cyan-glow hover:scale-105 transition-all duration-300 btn-haptic"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-8 shadow-lg cyan-glow hover:scale-105 transition-all duration-300 btn-haptic"
               >
                 <Link to="/admission">
                   Start Your Journey
@@ -114,9 +114,8 @@ const HeroSection = () => {
               </Button>
               <Button 
                 asChild 
-                variant="outline" 
                 size="lg" 
-                className="border-white/30 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm font-semibold"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 shadow-lg hover:scale-105 transition-all duration-300"
               >
                 <Link to="/about">
                   <Play className="mr-2 w-5 h-5" />

@@ -97,6 +97,28 @@ app.get('/api/admissions', async (req, res) => {
   }
 });
 
+// Partners
+app.get('/api/partners', async (req, res) => {
+  try {
+    const partners = await prisma.partners.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json(partners);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch partners" });
+  }
+});
+
+app.post('/api/partners', async (req, res) => {
+  try {
+    const newPartner = await prisma.partners.create({ data: req.body });
+    res.status(201).json(newPartner);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create partner" });
+  }
+});
+
+
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail', // You can change this to your preferred provider
