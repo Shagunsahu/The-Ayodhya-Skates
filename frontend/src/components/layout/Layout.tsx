@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import WhatsAppButton from "../common/WhatsAppButton";
 import ScrollToTop from "../common/ScrollToTop";
+import AdmissionPopup from "../common/AdmissionPopup";
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
       <Footer />
       <WhatsAppButton />
       <ScrollToTop />
+      <AdmissionPopup />
     </div>
   );
 };

@@ -95,7 +95,7 @@ const Admission = () => {
 
   return (
     <Layout>
-      <SEO title="Admission & Enrollment" description="Join The Ayodhya Skates academy. Enrollment information, fee structure, and registration for roller skating training programs in Ayodhya." path="/admission" />
+      <SEO title="Admission & Enrollment" description="Join The Ayodhya Skates academy. Enrollment information and registration for roller skating training programs in Ayodhya." path="/admission" />
       {/* Hero Section */}
       <section className="hero-gradient py-20 lg:py-28">
         <div className="container-custom">
@@ -106,7 +106,7 @@ const Admission = () => {
             className="text-center text-white"
           >
             <span className="inline-block px-4 py-2 bg-accent text-accent-foreground rounded-full text-sm font-semibold mb-6">
-              🎉 Admissions Open 2025!
+              🎉 Admissions Open 2026!
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Join The Ayodhya Skates</h1>
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
@@ -308,28 +308,6 @@ const Admission = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              {/* Fee Structure */}
-              <div className="card-sports p-6 lg:p-8">
-                <h3 className="text-xl font-bold text-foreground mb-4">Fee Structure</h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center pb-3 border-b border-border">
-                    <span className="text-muted-foreground">Registration Fee</span>
-                    <span className="font-semibold text-foreground">₹500</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-3 border-b border-border">
-                    <span className="text-muted-foreground">Monthly Fee</span>
-                    <span className="font-semibold text-foreground">₹1,500</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Quarterly Fee</span>
-                    <span className="font-semibold text-foreground">₹4,000</span>
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground mt-4">
-                  * Safety gear rental available. Discounts for siblings.
-                </p>
-              </div>
-
               {/* Training Schedule */}
               <div className="card-sports p-6 lg:p-8">
                 <h3 className="text-xl font-bold text-foreground mb-4">Training Schedule</h3>

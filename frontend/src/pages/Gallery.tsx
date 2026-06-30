@@ -126,6 +126,8 @@ const Gallery = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 
@@ -281,6 +283,8 @@ const Gallery = () => {
             <img
               src={selectedImage.src}
               alt={selectedImage.alt}
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-contain rounded-lg"
             />
             <div className="mt-4 text-white">

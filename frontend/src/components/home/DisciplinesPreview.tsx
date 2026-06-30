@@ -6,24 +6,24 @@ import { Button } from "@/components/ui/button";
 
 const disciplines = [
   {
-    title: "Speed Skating",
-    description: "Race against time on inline or quad skates. Build stamina, speed, and competitive edge.",
-    icon: "🏎️",
+    title: "Beginner Skating Training",
+    description: "Structured program for first-time skaters focusing on safety, core balance, and key movement fundamentals.",
+    icon: "🛼",
   },
   {
-    title: "Artistic Skating",
-    description: "Express yourself through dance and choreography on wheels. Grace meets athleticism.",
-    icon: "💃",
+    title: "Kids Skating Program",
+    description: "Fun and safe coaching designed specifically for children to build coordination and confidence on wheels.",
+    icon: "👶",
   },
   {
-    title: "Roller Hockey",
-    description: "Team sport combining skating skills with hockey techniques. Fast-paced and exciting.",
-    icon: "🏒",
-  },
-  {
-    title: "Freestyle Skating",
-    description: "Master slalom, tricks, and urban skating. Creative expression through technical skill.",
+    title: "Personal (One-to-One) Training",
+    description: "Individual coaching tailored directly to the athlete's specific goals, pace, and competitive requirements.",
     icon: "🎯",
+  },
+  {
+    title: "Professional Athlete Training",
+    description: "Advanced, high-performance coaching for competitive athletes targeting state, national, and international championships.",
+    icon: "⚡",
   },
 ];
 

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/common/SEO";
 import SectionHeader from "@/components/common/SectionHeader";
-import founderImage from "@/assets/founder-ravinder-kumar.jpg";
+import founderImage from "@/assets/founder-ravinder-kumar.jpeg";
 import { Target, Eye, Heart, Award, FileText, Download, Users, GraduationCap, Dumbbell, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -60,9 +60,14 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4 bg-primary/10 text-primary">
-                Our Story
-              </span>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                  Our Story
+                </span>
+                <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-accent/10 text-accent">
+                  🎖️ Affiliated with District Roller Skating Association, Ayodhya
+                </span>
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
                 From Passion to Purpose
               </h2>
@@ -70,6 +75,9 @@ const About = () => {
                 <p>
                   The Ayodhya Skates was founded in 2015 by <strong className="text-foreground">Mr. Ravinder Kumar</strong>
                   with a simple yet powerful vision: to bring world-class roller skating training to Ayodhya.
+                </p>
+                <p>
+                  We are proud to be officially <strong className="text-foreground">affiliated with the District Roller Skating Association, Ayodhya</strong>, ensuring our training programs adhere to high standards and open pathways for our athletes to compete in official championships.
                 </p>
                 <p>
                   What started as a small initiative with just a handful of students has now grown into 

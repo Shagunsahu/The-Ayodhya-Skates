@@ -135,7 +135,7 @@ app.post('/api/admissions', async (req, res) => {
     // Send email notification dynamically via Nodemailer
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Sending it to the academy admin
+      to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER, // Sending it to the academy admin
       subject: `New Admission Application: ${newAdmission.studentName}`,
       html: `
         <h2>New Admission Application Received</h2>
@@ -173,7 +173,7 @@ app.post('/api/contact', async (req, res) => {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Sending it to the academy admin
+      to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER, // Sending it to the academy admin
       subject: `New Contact Message: ${newMessage.subject}`,
       html: `
         <h2>New Contact Form Message</h2>

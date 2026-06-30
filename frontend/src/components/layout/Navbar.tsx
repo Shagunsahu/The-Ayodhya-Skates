@@ -26,7 +26,7 @@ const Navbar = () => {
       {/* Announcement Banner */}
       <div className="bg-primary text-primary-foreground py-2 text-center text-sm font-bold">
         <Zap className="inline w-4 h-4 mr-1" />
-        <span>Admissions Open 2025!</span> Join Ayodhya's Premier Roller Skating Academy
+        <span>Admissions Open 2026!</span> Join Ayodhya's Premier Roller Skating Academy
         <Link to="/admission" className="ml-2 underline hover:no-underline font-bold">
           Apply Now →
         </Link>

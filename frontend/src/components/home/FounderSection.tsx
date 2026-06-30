@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SectionHeader from "../common/SectionHeader";
-import founderImage from "@/assets/founder-ravinder-kumar.jpg";
+import founderImage from "@/assets/founder-ravinder-kumar.jpeg";
 
 const FounderSection = () => {
   return (

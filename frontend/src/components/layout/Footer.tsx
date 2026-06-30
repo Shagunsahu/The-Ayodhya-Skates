@@ -20,16 +20,16 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-background/80 text-sm leading-relaxed">
-              Training champions since 2015. Ayodhya's premier roller skating academy preparing athletes for district, state, and national level competitions.
+              Training champions since 2015. Ayodhya's premier roller skating academy affiliated with the District Roller Skating Association, Ayodhya, preparing athletes for district, state, and national level competitions.
             </p>
             <div className="flex gap-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61577384842670&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors" title="Facebook">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+              <a href="https://www.instagram.com/theayodhyaskates?igsh=MWpidXhkY2I1Nm44cQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors" title="Instagram">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+              <a href="https://youtube.com/@theayodhyaskates?si=1Q-Swo7zhLfK6MMV" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors" title="YouTube">
                 <Youtube className="w-5 h-5" />
               </a>
             </div>
@@ -58,14 +58,14 @@ const Footer = () => {
 
           {/* Disciplines */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Disciplines</h4>
+            <h4 className="font-semibold text-lg mb-4">Programs & Disciplines</h4>
             <ul className="space-y-3 text-sm text-background/80">
-              <li>Speed Skating</li>
-              <li>Artistic Skating</li>
-              <li>Roller Hockey</li>
-              <li>Freestyle Skating</li>
-              <li>Inline Skating</li>
-              <li>Quad Skating</li>
+              <li>Beginner Skating Training</li>
+              <li>Kids Skating Program</li>
+              <li>Personal (1-to-1) Training</li>
+              <li>Group Training</li>
+              <li>Professional Athlete Training</li>
+              <li>Championship Preparation</li>
             </ul>
           </div>
 
@@ -115,7 +115,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-background/10">
         <div className="container-custom py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-background/60">
-          <p>© 2025 The Ayodhya Skates. All rights reserved.</p>
+          <p>© 2026 The Ayodhya Skates. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
