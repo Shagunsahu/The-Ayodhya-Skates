@@ -137,7 +137,7 @@ const SponsorsSection = () => {
           className="text-center"
         >
           <Link
-            to="/contact"
+            to="/partners"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
           >
             <Building className="w-5 h-5" />

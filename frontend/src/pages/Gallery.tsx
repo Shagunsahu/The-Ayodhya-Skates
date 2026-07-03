@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/common/SEO";
 import SectionHeader from "@/components/common/SectionHeader";
@@ -253,12 +254,12 @@ const Gallery = () => {
                   Join us in nurturing the next generation of skating champions
                 </p>
               </div>
-              <a
-                href="/contact"
+              <Link
+                to="/partners"
                 className="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-colors"
               >
-                Contact Us
-              </a>
+                Become a Partner
+              </Link>
             </div>
           </motion.div>
         </div>

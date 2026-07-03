@@ -14,6 +14,7 @@ import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import Admission from "./pages/Admission";
 import Contact from "./pages/Contact";
+import Partners from "./pages/Partners";
 import AdminLogin from "./pages/AdminLogin";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
@@ -38,6 +39,7 @@ const App = () => (
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/admission" element={<Admission />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/partners" element={<Partners />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />

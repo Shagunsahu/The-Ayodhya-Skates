@@ -26,11 +26,6 @@ const contactInfo = [
     title: "Email",
     details: ["ayodhyaskates.info@gmail.com"],
   },
-  {
-    icon: Clock,
-    title: "Training Hours",
-    details: ["Morning: 5:30 AM - 9:00 AM", "Evening: 5:00 PM - 6:30 PM"],
-  },
 ];
 
 const Contact = () => {
