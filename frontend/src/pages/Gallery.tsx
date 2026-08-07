@@ -65,7 +65,7 @@ const Gallery = () => {
 
   return (
     <Layout>
-      <SEO title="Photo Gallery" description="Browse photos from training sessions, competitions, and events at The Ayodhya Skates academy. See our students in action." path="/gallery" />
+      <SEO title="Photo Gallery" description="Browse photos from training sessions, competitions, and events at The Ayodhya Skates company. See our students in action." path="/gallery" />
       {/* Hero Section */}
       <section className="hero-gradient py-20 lg:py-28">
         <div className="container-custom">

@@ -95,7 +95,7 @@ const Admission = () => {
 
   return (
     <Layout>
-      <SEO title="Admission & Enrollment" description="Join The Ayodhya Skates academy. Enrollment information and registration for roller skating training programs in Ayodhya." path="/admission" />
+      <SEO title="Admission & Enrollment" description="Join The Ayodhya Skates company. Enrollment information and registration for roller skating training programs in Ayodhya." path="/admission" />
       {/* Hero Section */}
       <section className="hero-gradient py-20 lg:py-28">
         <div className="container-custom">

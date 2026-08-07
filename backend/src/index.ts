@@ -118,6 +118,25 @@ app.post('/api/partners', async (req, res) => {
   }
 });
 
+// Minimal admin login for local dev: validates email against ADMIN_EMAIL
+app.post('/api/admin/login', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
+    if (email === process.env.ADMIN_EMAIL) {
+      return res.json({ id: 'admin', email, role: 'admin' });
+    }
+
+    return res.status(401).json({ error: 'Invalid credentials' });
+  } catch (err) {
+    console.error('Admin login error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -128,14 +147,25 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USER;
+
+async function sendNotificationEmail(mailOptions: nodemailer.SendMailOptions) {
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Notification email sent:', info.messageId);
+  } catch (emailError) {
+    console.error('Email send failed:', emailError);
+    throw emailError;
+  }
+}
+
 app.post('/api/admissions', async (req, res) => {
   try {
     const newAdmission = await prisma.admission.create({ data: req.body });
 
-    // Send email notification dynamically via Nodemailer
-    const mailOptions = {
+    const mailOptions: nodemailer.SendMailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER, // Sending it to the academy admin
+      to: adminEmail,
       subject: `New Admission Application: ${newAdmission.studentName}`,
       html: `
         <h2>New Admission Application Received</h2>
@@ -152,18 +182,11 @@ app.post('/api/admissions', async (req, res) => {
       `,
     };
 
-    try {
-      await transporter.sendMail(mailOptions);
-      console.log("Email sent successfully");
-    } catch (emailError) {
-      console.error("Nodemailer Error:", emailError);
-      // Optional: You could throw here if you want to fail the whole request
-    }
-
+    await sendNotificationEmail(mailOptions);
     res.status(201).json(newAdmission);
   } catch (error) {
-    console.error("Admissions POST error:", error);
-    res.status(500).json({ error: "Failed to create admission or send email" });
+    console.error('Admissions POST error:', error);
+    res.status(500).json({ error: 'Failed to create admission or send notification email' });
   }
 });
 
@@ -171,9 +194,9 @@ app.post('/api/contact', async (req, res) => {
   try {
     const newMessage = await prisma.contactMessage.create({ data: req.body });
 
-    const mailOptions = {
+    const mailOptions: nodemailer.SendMailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER, // Sending it to the academy admin
+      to: adminEmail,
       subject: `New Contact Message: ${newMessage.subject}`,
       html: `
         <h2>New Contact Form Message</h2>
@@ -185,17 +208,22 @@ app.post('/api/contact', async (req, res) => {
       `,
     };
 
-    try {
-      await transporter.sendMail(mailOptions);
-      console.log("Contact Email sent successfully");
-    } catch (emailError) {
-      console.error("Nodemailer Error:", emailError);
-    }
-
+    await sendNotificationEmail(mailOptions);
     res.status(201).json(newMessage);
   } catch (error) {
-    console.error("Contact POST error:", error);
-    res.status(500).json({ error: "Failed to create contact message" });
+    console.error('Contact POST error:', error);
+    res.status(500).json({ error: 'Failed to create contact message or send notification email' });
+  }
+});
+
+// GET contact messages for admin
+app.get('/api/contact', async (req, res) => {
+  try {
+    const messages = await prisma.contactMessage.findMany({ orderBy: { createdAt: 'desc' } });
+    res.json(messages);
+  } catch (error) {
+    console.error('Contact GET error:', error);
+    res.status(500).json({ error: 'Failed to fetch contact messages' });
   }
 });
 

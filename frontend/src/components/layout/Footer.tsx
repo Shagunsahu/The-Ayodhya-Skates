@@ -20,7 +20,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-background/80 text-sm leading-relaxed">
-              Training champions since 2015. Ayodhya's premier roller skating academy affiliated with the District Roller Skating Association, Ayodhya, preparing athletes for district, state, and national level competitions.
+              Training champions since 2021. Ayodhya's premier roller skating academy affiliated with the District Roller Skating Association, Ayodhya, preparing athletes for district, state, and national level competitions.
             </p>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/profile.php?id=61577384842670&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors" title="Facebook">
@@ -41,7 +41,6 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { name: "About Us", path: "/about" },
-                { name: "Our Coaches", path: "/coaches" },
                 { name: "Disciplines", path: "/disciplines" },
                 { name: "Achievements", path: "/achievements" },
                 { name: "Events", path: "/events" },

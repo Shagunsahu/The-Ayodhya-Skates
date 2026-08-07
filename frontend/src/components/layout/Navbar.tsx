@@ -9,12 +9,12 @@ import logoImage from "@/assets/logo.jpg";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
-  { name: "Coaches", path: "/coaches" },
+  { name: "Partners", path: "/partners" },
   { name: "Disciplines", path: "/disciplines" },
   { name: "Achievements", path: "/achievements" },
   { name: "Events", path: "/events" },
   { name: "Gallery", path: "/gallery" },
-  { name: "Partners", path: "/partners" },
+  
   { name: "Contact", path: "/contact" },
 ];
 

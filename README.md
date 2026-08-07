@@ -1,6 +1,6 @@
 # The Ayodhya Skates 🛼
 
-A full-stack monorepo application representing the official web platform for **The Ayodhya Skates Academy**. This project consists of a dynamic React frontend and a fully integrated robust Express + Node server hooked into a Neon PostgreSQL database.
+A full-stack monorepo application representing the official web platform for **The Ayodhya Skates Company**. This project consists of a dynamic React frontend and a fully integrated robust Express + Node server hooked into a Neon PostgreSQL database.
 
 ## Project Structure
 

@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play, Zap } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import skatingTrainingImage from "@/assets/hero-image-2.jpg";
+import { heroSliderImages } from "./heroSliderImages";
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
@@ -15,18 +16,33 @@ const HeroSection = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.85, 0.95]);
 
+  const slides = useMemo(() => heroSliderImages, []);
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
+
+    const interval = window.setInterval(() => {
+      setActiveImageIndex((current) => (current + 1) % slides.length);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [slides.length]);
+
   return (
     <section ref={sectionRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background Image with Parallax Effect */}
+      {/* Background Image Slider with Parallax Effect */}
       <motion.div 
         className="absolute inset-0"
         style={{ y: backgroundY }}
       >
-        <img 
-          src={skatingTrainingImage} 
-          alt="Children learning roller skating at The Ayodhya Skates Academy" 
-          className="w-full h-[120%] object-cover"
-        />
+        {slides.map((image, index) => (
+          <img
+            key={image}
+            src={image}
+            alt={`Hero slider ${index + 1}`}
+            className={`absolute inset-0 w-full h-[120%] object-cover transition-opacity duration-1000 ${index === activeImageIndex ? "opacity-100" : "opacity-0"}`}
+          />
+        ))}
       </motion.div>
       
       {/* Obsidian gradient overlay with scroll-based opacity */}

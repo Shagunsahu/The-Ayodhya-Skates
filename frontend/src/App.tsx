@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import About from "./pages/About";
-import Coaches from "./pages/Coaches";
 import Disciplines from "./pages/Disciplines";
 import Achievements from "./pages/Achievements";
 import Events from "./pages/Events";
@@ -32,7 +31,6 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
-              <Route path="/coaches" element={<Coaches />} />
               <Route path="/disciplines" element={<Disciplines />} />
               <Route path="/achievements" element={<Achievements />} />
               <Route path="/events" element={<Events />} />

@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useSponsors, usePartners, Sponsor, Partner } from "@/hooks/useSponsors";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, Plus, Trash2, Edit, Building, Users, Shield, Save } from "lucide-react";
+import { LogOut, Plus, Trash2, Edit, Building, Users, Shield, Save, Mail } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import {
   Dialog,
@@ -26,6 +27,26 @@ const Admin = () => {
   const { toast } = useToast();
   const { data: sponsors, refetch: refetchSponsors } = useSponsors();
   const { data: partners, refetch: refetchPartners } = usePartners();
+
+  const apiUrl = import.meta.env.VITE_API_URL || (import.meta.env.MODE === 'development' ? 'http://localhost:5000' : '');
+
+  const { data: contactMessages, refetch: refetchContacts } = useQuery({
+    queryKey: ['contacts'],
+    queryFn: async () => {
+      const res = await fetch(`${apiUrl}/api/contact`);
+      if (!res.ok) throw new Error('Failed to fetch contacts');
+      return (await res.json()) as Array<any>;
+    },
+  });
+
+  const { data: admissions, refetch: refetchAdmissions } = useQuery({
+    queryKey: ['admissions'],
+    queryFn: async () => {
+      const res = await fetch(`${apiUrl}/api/admissions`);
+      if (!res.ok) throw new Error('Failed to fetch admissions');
+      return (await res.json()) as Array<any>;
+    },
+  });
 
   const [sponsorForm, setSponsorForm] = useState({
     name: "",
@@ -168,7 +189,7 @@ const Admin = () => {
               </div>
               <p className="text-white/80">Manage your sponsors and partners</p>
             </div>
-            <Button variant="outline" onClick={handleSignOut} className="text-white border-white/30 hover:bg-white/10">
+            <Button variant="destructive" onClick={handleSignOut} className="text-white">
               <LogOut className="w-4 h-4 mr-2" />
               Sign Out
             </Button>
@@ -179,7 +200,7 @@ const Admin = () => {
       <section className="section-padding bg-background">
         <div className="container-custom">
           <Tabs defaultValue="sponsors" className="space-y-6">
-            <TabsList className="grid w-full max-w-md grid-cols-2">
+            <TabsList className="grid w-full max-w-md grid-cols-3">
               <TabsTrigger value="sponsors" className="flex items-center gap-2">
                 <Building className="w-4 h-4" />
                 Sponsors
@@ -187,6 +208,10 @@ const Admin = () => {
               <TabsTrigger value="partners" className="flex items-center gap-2">
                 <Users className="w-4 h-4" />
                 Partners
+              </TabsTrigger>
+              <TabsTrigger value="submissions" className="flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                Submissions
               </TabsTrigger>
             </TabsList>
 
@@ -289,6 +314,65 @@ const Admin = () => {
                   </div>
                 </CardContent>
               </Card>
+            </TabsContent>
+
+            {/* Submissions Tab */}
+            <TabsContent value="submissions">
+              <div className="grid gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Contact Enquiries</CardTitle>
+                    <CardDescription>Contact form submissions from website visitors</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid gap-4">
+                      {contactMessages && contactMessages.length > 0 ? (
+                        contactMessages.map((m: any) => (
+                          <div key={m.id} className="p-4 border border-border rounded-lg">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <h4 className="font-semibold">{m.name} — {m.subject}</h4>
+                                <p className="text-sm text-muted-foreground">{m.email} • {m.phone}</p>
+                              </div>
+                              <div className="text-xs text-muted-foreground">{new Date(m.createdAt).toLocaleString()}</div>
+                            </div>
+                            <p className="mt-3 text-sm">{m.message}</p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-center text-muted-foreground py-8">No enquiries yet.</p>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Admissions</CardTitle>
+                    <CardDescription>Join Now / Admission form submissions</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid gap-4">
+                      {admissions && admissions.length > 0 ? (
+                        admissions.map((a: any) => (
+                          <div key={a.id} className="p-4 border border-border rounded-lg">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <h4 className="font-semibold">{a.studentName} — {a.discipline}</h4>
+                                <p className="text-sm text-muted-foreground">Parent: {a.parentName} • {a.phone}</p>
+                              </div>
+                              <div className="text-xs text-muted-foreground">{new Date(a.createdAt).toLocaleString()}</div>
+                            </div>
+                            <p className="mt-3 text-sm">Batch: {a.batch} • Experience: {a.experience}</p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-center text-muted-foreground py-8">No admissions yet.</p>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </TabsContent>
 
             {/* Partners Tab */}

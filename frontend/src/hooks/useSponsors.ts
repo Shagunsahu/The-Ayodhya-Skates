@@ -36,7 +36,7 @@ export const usePartners = () => {
   return useQuery({
     queryKey: ["partners"],
     queryFn: async () => {
-      const apiUrl = import.meta.env.VITE_API_URL || "";
+      const apiUrl = import.meta.env.VITE_API_URL || (import.meta.env.MODE === 'development' ? 'http://localhost:5000' : '');
       const response = await fetch(`${apiUrl}/api/partners`);
 
       if (!response.ok) {

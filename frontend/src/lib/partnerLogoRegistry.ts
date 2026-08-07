@@ -18,6 +18,17 @@ const logoByFileName: Record<string, string> = {
   "MRD LOGO.webp": mrJaipuriaLogo,
 };
 
+const legacyLogoKeys: Record<string, string> = {
+  sethMrJaipuriaSchoolImg: mrJaipuriaLogo,
+  jingleBellAcademyImg: jingleBellAcademyLogo,
+  jingleBellSchoolImg: jingleBellSchoolLogo,
+  hcjAcademyImg: hcjLogo,
+  sethAnandramJaipuriaSchoolImg: jaipuriaMajnaiLogo,
+  faizabadPublicSchoolImg: faizabadLogo,
+  bhavdiyaPublicSchoolImg: bhavdiyaLogo,
+  aryavartAcademyImg: aryavartLogo,
+};
+
 const getFileNameFromPath = (value: string) => {
   const decoded = decodeURIComponent(value);
   return decoded.split("/").filter(Boolean).pop() ?? decoded;
@@ -26,6 +37,11 @@ const getFileNameFromPath = (value: string) => {
 export const resolvePartnerLogo = (image?: string | null, name?: string | null) => {
   if (!image) {
     return null;
+  }
+
+  const legacyKey = image.trim();
+  if (legacyLogoKeys[legacyKey]) {
+    return legacyLogoKeys[legacyKey];
   }
 
   const fileName = getFileNameFromPath(image);

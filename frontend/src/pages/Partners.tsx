@@ -14,7 +14,7 @@ const Partners = () => {
     <Layout>
       <SEO
         title="Our Partners & Schools"
-        description="Discover the trusted schools and organizations partnering with The Ayodhya Skates academy to nurture skating champions in Ayodhya."
+        description="Discover the trusted schools and organizations partnering with The Ayodhya Skates company to nurture skating champions in Ayodhya."
         path="/partners"
       />
 

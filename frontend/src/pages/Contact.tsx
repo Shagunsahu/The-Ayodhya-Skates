@@ -48,8 +48,9 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '';
-      const response = await fetch(`${apiUrl}/api/contact`, {
+      const apiUrl = import.meta.env.VITE_API_URL || (import.meta.env.MODE === 'development' ? 'http://localhost:5000' : '');
+      const endpoint = apiUrl ? `${apiUrl}/api/contact` : '/api/contact';
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +61,7 @@ const Contact = () => {
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Submission failed with status:', response.status, errorText);
-        throw new Error('Failed to submit message');
+        throw new Error(`Failed to submit message: ${errorText}`);
       }
 
       toast({
@@ -76,6 +77,7 @@ const Contact = () => {
         message: "",
       });
     } catch (error) {
+      console.error('Contact form error:', error);
       toast({
         title: "Submission Failed",
         description: "There was an error sending your message. Please try again.",
