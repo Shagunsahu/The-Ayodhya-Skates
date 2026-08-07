@@ -5,6 +5,7 @@ import { PrismaClient } from '@prisma/client';
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 import nodemailer from 'nodemailer';
+import { authenticateAdminLogin } from './adminAuth';
 
 dotenv.config();
 
@@ -118,19 +119,33 @@ app.post('/api/partners', async (req, res) => {
   }
 });
 
-// Minimal admin login for local dev: validates email against ADMIN_EMAIL
+// Admin login for local dev and deployed environments.
 app.post('/api/admin/login', async (req, res) => {
   try {
-    const { email } = req.body;
-    if (!email) {
-      return res.status(400).json({ error: 'Email is required' });
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    if (email === process.env.ADMIN_EMAIL) {
-      return res.json({ id: 'admin', email, role: 'admin' });
+    const adminEmail = process.env.ADMIN_EMAIL?.trim();
+    const adminPassword = process.env.ADMIN_PASSWORD?.trim();
+
+    const result = authenticateAdminLogin(
+      { email, password },
+      {
+        ...(adminEmail ? { adminEmail } : {}),
+        ...(adminEmail ? { adminEmails: [adminEmail] } : {}),
+        ...(adminPassword ? { adminPassword } : {}),
+        isProduction: process.env.NODE_ENV === 'production',
+      }
+    );
+
+    if (!result.ok) {
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    return res.status(401).json({ error: 'Invalid credentials' });
+    return res.json({ id: 'admin', email: email.trim().toLowerCase(), role: 'admin' });
   } catch (err) {
     console.error('Admin login error:', err);
     res.status(500).json({ error: 'Internal server error' });
