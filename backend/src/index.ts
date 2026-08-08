@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
 import { PrismaClient } from '@prisma/client';
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
@@ -17,9 +19,27 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 const port = process.env.PORT || 5000;
+const frontendDistPath = path.resolve(__dirname, '../../frontend/dist');
+const frontendIndexPath = path.join(frontendDistPath, 'index.html');
 
 app.use(cors());
 app.use(express.json());
+
+if (fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+
+    if (fs.existsSync(frontendIndexPath)) {
+      return res.sendFile(frontendIndexPath);
+    }
+
+    return next();
+  });
+}
 
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'pong' });
@@ -128,8 +148,8 @@ app.post('/api/admin/login', async (req, res) => {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    const adminEmail = process.env.ADMIN_EMAIL?.trim();
-    const adminPassword = process.env.ADMIN_PASSWORD?.trim();
+    const adminEmail = process.env.ADMIN_EMAIL?.trim() || process.env.mail?.trim() || process.env.EMAIL_USER?.trim();
+    const adminPassword = process.env.ADMIN_PASSWORD?.trim() || process.env.Password?.trim() || process.env.PASSWORD?.trim();
 
     const result = authenticateAdminLogin(
       { email, password },
